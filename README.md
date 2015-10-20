@@ -4,18 +4,18 @@ How to create a Django project from scratch
 
 Setup a directory for the project to live in:
 
-    mkdir authtest
-    cd authtest
+    > mkdir authtest
+    > cd authtest
 
 Setup an .editorconfig file per the file included in the project.
 
 Create a virtual environment:
 
-    mkvirtualenv authtest
+    > mkvirtualenv authtest
 
 Setup a git repository:
 
-    git init
+    > git init
 
 Upgrade your pip and install Django, and update your pip requirements file:
 
@@ -58,9 +58,37 @@ Run the server and check that all is good:
 
     > ./manage.py runserver
  
-You should see the following if you visit [http://localhost:8000]:
+You should see the following if you visit http://localhost:8000:
 
     It worked!
     Congratulations on your first Django-powered page.
 
 Congratulations!!  Have a beer.
+
+Now install the Django REST Framework
+
+    > pip install djangorestframework
+    > pip install djangorestframework-jwt
+    > pip freeze > pip-reqs.txt
+
+Add the following to settings.py:
+
+``` python
+# Django Rest Framework
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+       'rest_framework.permissions.AllowAny',
+    ),
+    'EXCEPTION_HANDLER': 'common.server_errors.graceful_exception_handler',
+}
+
+from datetime import timedelta
+
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': timedelta(minutes=60),
+    'JWT_ALLOW_REFRESH': True,
+}
+```
