@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    'snippets',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -111,7 +112,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
        'rest_framework.permissions.AllowAny',
     ),
-    'EXCEPTION_HANDLER': 'common.server_errors.graceful_exception_handler',
+    # 'EXCEPTION_HANDLER': 'common.server_errors.graceful_exception_handler',
 }
 
 from datetime import timedelta
