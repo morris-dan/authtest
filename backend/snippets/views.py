@@ -1,4 +1,6 @@
-from rest_framework.generics import (CreateAPIView, ListCreateAPIView, RetrieveUpdateAPIView, RetrieveUpdateDestroyAPIView)
+from rest_framework.generics import *
+
+from rest_framework.permissions import IsAuthenticated
 
 from django.contrib.auth.models import User
 
@@ -6,7 +8,8 @@ from snippets.models import Snippet
 from snippets.serializers import (SnippetSerializer, UserSerializer)
 
 
-class SnippetCreate(CreateAPIView):
+class SnippetCreate(ListCreateAPIView):
+    permission_classes = (IsAuthenticated, )
     queryset = Snippet.objects.all()
     serializer_class = SnippetSerializer
 
@@ -14,17 +17,20 @@ class SnippetCreate(CreateAPIView):
         serializer.save(owner=self.request.user)
 
 class SnippetDetail(RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthenticated, )
     queryset = Snippet.objects.all()
     serializer_class = SnippetSerializer
     lookup_field = 'uuid'
 
 
 class UserCreate(ListCreateAPIView):
+    permission_classes = (IsAuthenticated, )
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
 
 class UserDetail(RetrieveUpdateAPIView):
+    permission_classes = (IsAuthenticated, )
     queryset = User.objects.all()
     serializer_class = UserSerializer
 

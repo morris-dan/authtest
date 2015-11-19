@@ -107,10 +107,11 @@ STATIC_URL = '/static/'
 # Django Rest Framework
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-       'rest_framework.permissions.AllowAny',
+       'rest_framework.permissions.IsAuthenticated',
     ),
     # 'EXCEPTION_HANDLER': 'common.server_errors.graceful_exception_handler',
 }
