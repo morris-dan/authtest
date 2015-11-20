@@ -1,20 +1,28 @@
 (function() {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('authtest')
-    .config(config);
+    angular
+        .module('authtest')
+        .config(config);
 
-  /** @ngInject */
-  function config($logProvider, toastr) {
-    // Enable log
-    $logProvider.debugEnabled(true);
+    /** @ngInject */
+    function config($logProvider, $resourceProvider, $httpProvider) {
 
-    // Set options third-party lib
-    toastr.options.timeOut = 3000;
-    toastr.options.positionClass = 'toast-top-right';
-    toastr.options.preventDuplicates = true;
-    toastr.options.progressBar = true;
-  }
+        // Enable log
+        $logProvider.debugEnabled(true);
+
+        // Handle token authentication
+        $httpProvider.interceptors.push('JWTInterceptor');
+
+        // Setup resource handling wrt the REST API
+        $resourceProvider.defaults.stripTrailingSlashes = false;
+        $resourceProvider.defaults.actions = {
+            'get':    {method:'GET'},
+            'create': {method:'POST'},
+            'update': {method:'PUT', isArray:false},
+            'query':  {method:'GET', isArray:true},
+            'delete': {method:'DELETE'}
+        };
+    }
 
 })();

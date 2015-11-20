@@ -1,7 +1,11 @@
 {
   "name": "authtest",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "angular-jwt": "0.0.9",
+    "ngstorage": "^0.3.10",
+    "phantomjs": "^1.9.18"
+  },
   "scripts": {
     "test": "gulp test"
   },

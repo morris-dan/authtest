@@ -21,12 +21,28 @@
     return directive;
 
     /** @ngInject */
-    function NavbarController(moment) {
+    function NavbarController(moment, $log, $window, Auth) {
       var vm = this;
+      vm.Auth = Auth;
+
+      vm.logout = logout;
+
+      vm.creationDate = 1444609918490;
 
       // "vm.creation" is avaible by directive option "bindToController: true"
-      vm.relativeDate = moment(vm.creationDate).fromNow();
+      $log.log(vm, vm.creationDate);
+      vm.relativeDate = moment(vm.creationDate); //.fromNow();
+
+      function logout() {
+        $log.log('navbar.logout');
+        // clear the entire session
+        Auth.endSession();
+        // hard navigation here, to effectively exit our SPA
+        $window.location.reload();
+      }
+
     }
+
   }
 
 })();
