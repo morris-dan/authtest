@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = (
     'snippets',
     'rest_framework',
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,6 +46,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -123,3 +125,10 @@ JWT_AUTH = {
     'JWT_ALLOW_REFRESH': True,
 }
 
+CORS_ORIGIN_WHITELIST = [
+    'mumsandco.com.au',
+    'admin.mumsandco.com.au',
+    'staging.mumsandco.com.au',
+    'admin.staging.mumsandco.com.au',
+    'localhost:3000',
+]
