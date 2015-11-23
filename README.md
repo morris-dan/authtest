@@ -62,7 +62,7 @@ Run the server and check that all is good:
 
     > ./manage.py runserver
  
-You should see the following if you visit http://localhost:8000:
+You should see the following if you visit [http://localhost:8000](http://localhost:8000):
 
     It worked!
     Congratulations on your first Django-powered page.
@@ -225,7 +225,7 @@ We can now run the site:
 
     > ./manage.py runserver
 
-And point our browser at http://localhost:8000/ and see the list of available url endpoints:
+And point our browser at [http://localhost:8000/](http://localhost:8000/) and see the list of available url endpoints:
 
 ``` python
 ^api-auth/ ^login/$ [name='login']
@@ -236,7 +236,7 @@ And point our browser at http://localhost:8000/ and see the list of available ur
 ^ ^snippets/(?P<uuid>.{36})\.(?P<format>[a-z0-9]+)/?$ [name='detail']
 ```
 
-You should be able to visit http://localhost:8000/snippets and use the form rendered by the REST framework's Browseable API to create a few snippets, then visit http://localhost:8000/snippets/ to view them.
+You should be able to visit [http://localhost:8000/snippets/](http://localhost:8000/snippets/) and use the form rendered by the REST framework's Browseable API to create a few snippets, then visit [http://localhost:8000/snippets/](http://localhost:8000/snippets/) to view them.
 
 Time for another beer!!
 
